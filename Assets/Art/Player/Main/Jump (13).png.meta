@@ -113,12 +113,12 @@ TextureImporter:
       name: pixel-art-1655964343_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 14
+        y: 72
+        width: 330
+        height: 482
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 596e622c9af0a884d915984b24673db7
     internalID: 0
     vertices: []
     indices: 
@@ -145,6 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Jump (13)_0: 2058084912
       pixel-art-1655964343_0: 1992319278912251504
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

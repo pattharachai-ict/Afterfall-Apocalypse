@@ -113,12 +113,12 @@ TextureImporter:
       name: pixel-art-1655964343_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 49
+        y: 90
+        width: 315
+        height: 432
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: acac22cd3b69ed8429a9533dbb8cc1ff
     internalID: 0
     vertices: []
     indices: 
