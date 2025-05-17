@@ -28,6 +28,7 @@ public class HealthBar : MonoBehaviour
     }
 
     public void TakeDamage(int amount)
+<<<<<<< HEAD
 {
     // If player is dead or currently invincible, ignore the damage
     if (isDead || isInvincible) return;
@@ -49,6 +50,23 @@ public class HealthBar : MonoBehaviour
     }
 }
 
+=======
+    {
+        // If player is dead or currently invincible, ignore the damage
+        if (isDead || isInvincible) return;
+        
+        health -= amount;
+        slider.value = health;
+        
+        // Make the player invincible and start the invincibility coroutine
+        StartCoroutine(InvincibilityFrames());
+
+        if(health <= 0)
+        {
+            Die();
+        }
+    }
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
     
     private IEnumerator InvincibilityFrames()
     {

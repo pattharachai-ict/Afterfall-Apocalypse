@@ -103,4 +103,8 @@ public class BossEnemy : MonoBehaviour, IDDamagable
         yield return new WaitForSeconds(0.1f);
         spriteRenderer.color = originalColor;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6

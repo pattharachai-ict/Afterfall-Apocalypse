@@ -1,15 +1,24 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+<<<<<<< HEAD
 using PlayerController;
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
 
 public class ShootScript : MonoBehaviour
 {
     [Header("Object References")]
+<<<<<<< HEAD
     [SerializeField] private GameObject gun;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bulletSpawnPoint;
     private AudioManager audioManager;
+=======
+    [SerializeField] private GameObject gun; // The gun GameObject
+    [SerializeField] private GameObject bullet; // The bullet prefab
+    [SerializeField] private Transform bulletSpawnPoint; // Bullet spawn location
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
 
     [Header("Ammo Settings")]
     public int currentClip;
@@ -18,6 +27,7 @@ public class ShootScript : MonoBehaviour
     public int maxAmmoSize = 30;
 
     [Header("Shooting Settings")]
+<<<<<<< HEAD
     [SerializeField] private float shootCooldown = 0.1f;
     [SerializeField] private float reloadDuration = 2f;
     private float nextShootTime = 0f;
@@ -54,15 +64,38 @@ public class ShootScript : MonoBehaviour
         // Safety reset
         isReloading = false;
         reloadCoroutine = null;
+=======
+    [SerializeField] private float shootCooldown = 1f; // Time between shots
+    [SerializeField] private float reloadDuration = 2f; // Time to reload
+    private float nextShootTime = 0f;
+    private bool isReloading = false;
+
+    private Vector2 worldPosition;
+    private Vector2 direction;
+
+    void Start()
+    {
+        // Initialize ammo
+        currentClip = maxClipSize;
+        currentAmmo = maxAmmoSize;
+
+        // Check references at start
+        ValidateReferences();
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
     }
 
     void Update()
     {
+<<<<<<< HEAD
         CalculateShootDirection();
+=======
+        HandleGunRotation();
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
 
         if (isReloading)
             return;
 
+<<<<<<< HEAD
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
             StartReload();
@@ -83,11 +116,38 @@ public class ShootScript : MonoBehaviour
             direction = playerController.IsFacingRight ? Vector2.right : Vector2.left;
         else
             direction = Vector2.right;
+=======
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
+        HandleGunShooting();
+    }
+
+    private void HandleGunRotation()
+    {
+        if (gun != null)
+        {
+            worldPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            direction = (worldPosition - (Vector2)gun.transform.position).normalized;
+            gun.transform.right = direction;
+
+            Vector3 localScale = gun.transform.localScale;
+            localScale.y = direction.y < 0 ? -Mathf.Abs(localScale.y) : Mathf.Abs(localScale.y);
+            gun.transform.localScale = localScale;
+        }
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
     }
 
     private void HandleGunShooting()
     {
+<<<<<<< HEAD
         if (Mouse.current != null && Mouse.current.leftButton.isPressed && Time.time >= nextShootTime)
+=======
+        if (Mouse.current.leftButton.wasPressedThisFrame && Time.time >= nextShootTime)
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         {
             if (currentClip <= 0)
             {
@@ -97,12 +157,16 @@ public class ShootScript : MonoBehaviour
 
             Shoot();
             currentClip--;
+<<<<<<< HEAD
             nextShootTime = Time.time + shootCooldown;
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         }
     }
 
     private void Shoot()
     {
+<<<<<<< HEAD
         if (bullet == null || bulletSpawnPoint == null) return;
 
         Quaternion bulletRotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
@@ -116,6 +180,22 @@ public class ShootScript : MonoBehaviour
 
         audioManager.PlaySFX(audioManager.shoot);
         Debug.Log("Bullet fired in direction: " + direction);
+=======
+        if (bullet == null)
+        {
+            Debug.LogWarning("Cannot shoot: bullet prefab is null or was destroyed.");
+            return;
+        }
+
+        if (bulletSpawnPoint == null)
+        {
+            Debug.LogWarning("Cannot shoot: bulletSpawnPoint is null.");
+            return;
+        }
+
+        Instantiate(bullet, bulletSpawnPoint.position, gun != null ? gun.transform.rotation : Quaternion.identity);
+        Debug.Log("Bullet fired!");
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
     }
 
     private IEnumerator Reload()
@@ -128,15 +208,25 @@ public class ShootScript : MonoBehaviour
 
         isReloading = true;
         Debug.Log("Reloading...");
+<<<<<<< HEAD
         audioManager.PlaySFX(audioManager.reload);
 
         yield return new WaitForSeconds(reloadDuration);
 
         int reloadAmount = Mathf.Min(maxClipSize - currentClip, currentAmmo);
+=======
+
+        yield return new WaitForSeconds(reloadDuration);
+
+        int reloadAmount = maxClipSize - currentClip;
+        reloadAmount = Mathf.Min(reloadAmount, currentAmmo);
+
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         currentClip += reloadAmount;
         currentAmmo -= reloadAmount;
 
         isReloading = false;
+<<<<<<< HEAD
         reloadCoroutine = null;
         Debug.Log("Reload complete.");
     }
@@ -201,3 +291,28 @@ public void AddAmmo(int ammoAmount)
         }
     }
 }
+=======
+        Debug.Log("Reload complete.");
+    }
+
+    public void AddAmmo(int ammoAmount)
+    {
+        currentAmmo += ammoAmount;
+        if (currentAmmo > maxAmmoSize)
+        {
+            currentAmmo = maxAmmoSize;
+        }
+    }
+
+    // Debug helper to check all references
+    private void ValidateReferences()
+    {
+        if (bullet == null)
+            Debug.LogError("Bullet prefab is not assigned!");
+        if (bulletSpawnPoint == null)
+            Debug.LogError("Bullet spawn point is not assigned!");
+        if (gun == null)
+            Debug.LogError("Gun GameObject is not assigned!");
+    }
+}
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6

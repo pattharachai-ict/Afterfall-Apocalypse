@@ -16,7 +16,10 @@ GameObject:
   - component: {fileID: 4347504523500565075}
   - component: {fileID: 3307243818806842648}
   - component: {fileID: 2758375083252570820}
+<<<<<<< HEAD
   - component: {fileID: 6654025059505933537}
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -347,6 +350,7 @@ MonoBehaviour:
   _isOnWall: 0
   _isOnCeiling: 0
   _isGrounded: 0
+<<<<<<< HEAD
 --- !u!114 &6654025059505933537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,3 +367,5 @@ MonoBehaviour:
   shootScript: {fileID: 0}
   meleeWeaponObj: {fileID: 0}
   gunObj: {fileID: 0}
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6

@@ -20,7 +20,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip jump;
     public AudioClip meleeequip;
     public AudioClip shoot;
+<<<<<<< HEAD
     public AudioClip reload;
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
 
     private void Start()
     {

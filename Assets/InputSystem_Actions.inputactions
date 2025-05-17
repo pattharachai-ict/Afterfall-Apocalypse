@@ -73,6 +73,7 @@
                     "type": "Button",
                     "id": "641cd816-40e6-41b4-8c3d-04687c349290",
                     "expectedControlType": "",
+<<<<<<< HEAD
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -100,6 +101,8 @@
                     "type": "Button",
                     "id": "f8c2078e-3764-4833-9cc7-0a9ae47b4e21",
                     "expectedControlType": "",
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -317,8 +320,13 @@
                 },
                 {
                     "name": "",
+<<<<<<< HEAD
                     "id": "bbdfa412-f850-481a-b444-f780529b97a9",
                     "path": "<Gamepad>/leftTrigger",
+=======
+                    "id": "8cbb2f4b-a784-49cc-8d5e-c010b8c7f4e6",
+                    "path": "<Gamepad>/buttonWest",
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",

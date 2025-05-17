@@ -1,5 +1,8 @@
 using UnityEngine;
+<<<<<<< HEAD
 using UnityEngine.InputSystem;
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
 
 public class WeaponSwitching : MonoBehaviour
 {
@@ -14,23 +17,32 @@ public class WeaponSwitching : MonoBehaviour
     private enum WeaponType { Melee, Ranged }
     private WeaponType currentWeapon = WeaponType.Ranged;
 
+<<<<<<< HEAD
     private AudioManager audioManager;
 
     void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+=======
+    void Start()
+    {
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         UpdateWeaponState();
     }
 
     void Update()
     {
+<<<<<<< HEAD
         // Keep keyboard input for testing/backup
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         if (Input.GetKeyDown(KeyCode.E))
         {
             SwitchWeapon();
         }
     }
 
+<<<<<<< HEAD
     // Call this from Player Input's Attack callback
     public void OnAttack(InputAction.CallbackContext context)
     {
@@ -76,10 +88,20 @@ public class WeaponSwitching : MonoBehaviour
     else
         audioManager.PlaySFX(audioManager.gunequip);
 }
+=======
+    private void SwitchWeapon()
+    {
+        currentWeapon = currentWeapon == WeaponType.Melee ? WeaponType.Ranged : WeaponType.Melee;
+        UpdateWeaponState();
+        Debug.Log("Switched to: " + currentWeapon);
+    }
+
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
     private void UpdateWeaponState()
     {
         bool isMelee = currentWeapon == WeaponType.Melee;
 
+<<<<<<< HEAD
         // CRITICAL FIX: Completely disable the scripts, not just setting enabled flag
         // This prevents them from responding to other input methods
         if (meleeAttackScript != null) 
@@ -97,9 +119,18 @@ public class WeaponSwitching : MonoBehaviour
             // Prevent direct input checking in the ShootScript
             // You may need to modify ShootScript to check this too
         }
+=======
+        // Enable/disable weapon scripts
+        if (meleeAttackScript != null) meleeAttackScript.enabled = isMelee;
+        if (shootScript != null) shootScript.enabled = !isMelee;
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
 
         // Show/hide weapon visuals
         if (meleeWeaponObj != null) meleeWeaponObj.SetActive(isMelee);
         if (gunObj != null) gunObj.SetActive(!isMelee);
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6

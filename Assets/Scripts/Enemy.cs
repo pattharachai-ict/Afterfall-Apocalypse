@@ -3,10 +3,17 @@ using Unity.Mathematics;
 using System.Collections;
 using PlayerController;
 
+<<<<<<< HEAD
 public class Enemy : MonoBehaviour, IDDamagable
 {
     [Header("Health Settings")]
     [SerializeField] private float maxHealth = 20f;
+=======
+
+public class Enemy : MonoBehaviour, IDDamagable
+{
+    [SerializeField] private float maxHealth = 3f;
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
     private float currentHealth;
     private float lastFlashThreshold;
     private float flashThreshold;
@@ -18,6 +25,7 @@ public class Enemy : MonoBehaviour, IDDamagable
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
+<<<<<<< HEAD
     [Header("UI")]
     [SerializeField] private FloatingHealthBar healthBar;
     
@@ -33,11 +41,17 @@ public class Enemy : MonoBehaviour, IDDamagable
     // Add a static reference to a backup ammo prefab
     private static GameObject backupAmmoPrefab;
 
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
     void Start()
     {
         currentHealth = maxHealth;
         lastFlashThreshold = maxHealth;
+<<<<<<< HEAD
         flashThreshold = maxHealth / 4;
+=======
+        flashThreshold = maxHealth / maxHealth;
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
@@ -45,6 +59,7 @@ public class Enemy : MonoBehaviour, IDDamagable
             originalColor = spriteRenderer.color;
         }
 
+<<<<<<< HEAD
         enemyAnimator = GetComponent<Animator>();
 
         audioManager = GameObject.FindGameObjectWithTag("Audio")?.GetComponent<AudioManager>();
@@ -148,14 +163,37 @@ public class Enemy : MonoBehaviour, IDDamagable
         }
 
         // Visual feedback for damage
+=======
+        // 🧩 NEW: Get Animator
+        enemyAnimator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        // 🔥 REMOVE auto destroy here (we move this logic to Die())
+    }
+
+    public void damage(float damageAmount)
+    {
+        if (isDead) return; // 🧩 Avoid multiple death triggers
+
+        float previousHealth = currentHealth;
+        currentHealth -= damageAmount;
+        Debug.Log($"Enemy took {damageAmount} damage. Health left: {currentHealth}");
+
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         if (spriteRenderer != null && Mathf.Floor(previousHealth / flashThreshold) > Mathf.Floor(currentHealth / flashThreshold))
         {
             StartCoroutine(FlashRed());
             lastFlashThreshold -= flashThreshold;
         }
 
+<<<<<<< HEAD
         // Check for death
         if (currentHealth <= 0 && !isDead)
+=======
+        if (currentHealth <= 0)
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         {
             Die();
         }
@@ -163,6 +201,7 @@ public class Enemy : MonoBehaviour, IDDamagable
 
     private void Die()
     {
+<<<<<<< HEAD
         if (isDead) return; // Prevent calling Die() multiple times
         
         isDead = true;
@@ -179,6 +218,12 @@ public class Enemy : MonoBehaviour, IDDamagable
         }
 
         // Stop movement
+=======
+        isDead = true;
+        Debug.Log("Enemy died");
+
+        // 🧩 Stop zombie movement
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         var rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -186,15 +231,23 @@ public class Enemy : MonoBehaviour, IDDamagable
             rb.bodyType = RigidbodyType2D.Static;
         }
 
+<<<<<<< HEAD
         // Disable collider
+=======
+        // 🧩 Disable Collider so player shots don't hit corpse
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         var collider = GetComponent<Collider2D>();
         if (collider != null)
             collider.enabled = false;
 
+<<<<<<< HEAD
         // Drop ammo pickup
         DropAmmoPickup();
 
         // Play death animation if animator exists
+=======
+        // 🧩 Play death animation
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         if (enemyAnimator != null)
         {
             enemyAnimator.SetBool(AnimationStrings.isDead, true);
@@ -204,6 +257,7 @@ public class Enemy : MonoBehaviour, IDDamagable
         {
             Destroy(gameObject, 0.5f);
         }
+<<<<<<< HEAD
 
         // Hide health bar
         if (healthBar != null)
@@ -276,10 +330,16 @@ public class Enemy : MonoBehaviour, IDDamagable
                 Debug.LogError("Cannot drop ammo: ammoPickupPrefab is null! Assign it in the Inspector.");
             }
         }
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
     }
 
     private IEnumerator DestroyAfterAnimation()
     {
+<<<<<<< HEAD
+=======
+        // 🧩 Wait time (match your death animation length)
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
@@ -290,6 +350,7 @@ public class Enemy : MonoBehaviour, IDDamagable
         yield return new WaitForSeconds(0.1f);
         spriteRenderer.color = originalColor;
     }
+<<<<<<< HEAD
     
     public float GetCurrentHealth()
     {
@@ -318,3 +379,6 @@ public class Enemy : MonoBehaviour, IDDamagable
         }
     }
 }
+=======
+}
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6

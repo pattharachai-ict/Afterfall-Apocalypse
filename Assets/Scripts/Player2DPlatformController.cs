@@ -9,8 +9,11 @@ namespace PlayerController
         public Rigidbody2D myRigidbody2D;
         public Animator animator;
         TouchingDirections touchingDirections;
+<<<<<<< HEAD
         private AudioManager audioManager; // ✅ AudioManager reference
 
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
         // Jump
         [SerializeField] private float jumpStrength = 10f;
         private bool canJump = true;
@@ -30,8 +33,11 @@ namespace PlayerController
         // Face turn
         private bool isFacingRight = true;
         public float jumpImpulse = 10f;
+<<<<<<< HEAD
         public bool IsFacingRight => isFacingRight;
 
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
 
         void Start()
         {
@@ -41,8 +47,11 @@ namespace PlayerController
             if (animator == null)
                 animator = GetComponent<Animator>();
 
+<<<<<<< HEAD
             audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); // ✅ Initialize AudioManager
 
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
             speed = walkspeed;
         }
 
@@ -58,6 +67,10 @@ namespace PlayerController
         private void FixedUpdate()
         {
             myRigidbody2D.linearVelocity = new Vector2(movementInput.x * speed, myRigidbody2D.linearVelocity.y);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
             animator.SetFloat(AnimationStrings.yVelocity, myRigidbody2D.linearVelocity.y);
         }
 
@@ -70,12 +83,15 @@ namespace PlayerController
 
                 animator.SetTrigger(AnimationStrings.jump);
                 myRigidbody2D.linearVelocity = new Vector2(myRigidbody2D.linearVelocity.x, jumpImpulse);
+<<<<<<< HEAD
 
                 // ✅ Play jump sound
                 if (audioManager != null)
                 {
                     audioManager.PlaySFX(audioManager.jump);
                 }
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
             }
         }
 
@@ -117,13 +133,18 @@ namespace PlayerController
         public void OnMove(InputAction.CallbackContext context)
         {
             movementInput = context.ReadValue<Vector2>();
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
             // When player presses down, find and notify platforms
             if (context.performed && movementInput.y < -0.5f)
             {
                 NotifyPlatformsOfDownInput(context);
             }
         }
+<<<<<<< HEAD
 
         // This method will help connect the player's down input to the platform
         private void NotifyPlatformsOfDownInput(InputAction.CallbackContext context)
@@ -134,15 +155,39 @@ namespace PlayerController
                 ContactPoint2D[] contacts = new ContactPoint2D[10]; // Adjust array size as needed
                 int contactCount = playerCollider.GetContacts(contacts);
 
+=======
+        
+        // This method will help connect the player's down input to the platform
+        private void NotifyPlatformsOfDownInput(InputAction.CallbackContext context)
+        {
+            // Find all platform pass-through scripts that the player is currently touching
+            Collider2D playerCollider = GetComponent<Collider2D>();
+            if (playerCollider != null)
+            {
+                // Get all colliders the player is touching
+                ContactPoint2D[] contacts = new ContactPoint2D[10]; // Adjust array size as needed
+                int contactCount = playerCollider.GetContacts(contacts);
+                
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
                 for (int i = 0; i < contactCount; i++)
                 {
                     GameObject contactObject = contacts[i].collider.gameObject;
                     PlatformPassThrough platform = contactObject.GetComponent<PlatformPassThrough>();
+<<<<<<< HEAD
 
                     if (platform != null)
                     {
                         platform.OnDownInput(context);
                         break;
+=======
+                    
+                    // If this is a platform with pass-through functionality
+                    if (platform != null)
+                    {
+                        // Notify the platform of the down input
+                        platform.OnDownInput(context);
+                        break; // Only need to notify one platform
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
                     }
                 }
             }
@@ -160,6 +205,9 @@ namespace PlayerController
         {
             isRunning = context.ReadValueAsButton();
         }
+<<<<<<< HEAD
         
+=======
+>>>>>>> 268aa96d15f71a08855df4baaec8da83e9344ca6
     }
 }
